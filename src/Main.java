@@ -1,46 +1,42 @@
+package src;
 import java.util.Scanner;
 
 public class Main {
-
-    public static int quantidadeDeUsuario = 999;
-
-    public static String nome[] = new String[quantidadeDeUsuario];
-
-    public static int horas[] = new int[quantidadeDeUsuario];
-
-    public static double valorPorHora[] = new double[quantidadeDeUsuario];
-
-    public static boolean tercerizadoF[] = new boolean[quantidadeDeUsuario];
-
-    public static double valorPagamento[] = new double[quantidadeDeUsuario];
-
-
-    public static void main(String[] args){
-        Funcionario funcionario = new Funcionario();
-        Tercerizado tercerizado = new Tercerizado();
-
+    public static void main(String[] args) {
 
         Scanner bind = new Scanner(System.in);
         System.out.println("Insira a quantidade de Funcionários: ");
-        quantidadeDeUsuario = bind.nextInt();
+        int quantidadeDeUsuario = bind.nextInt();
+        Funcionario[] funcionario = new Funcionario[quantidadeDeUsuario];
+        Tercerizado[] tercerizado = new Tercerizado[quantidadeDeUsuario];
 
-        for(int x = 0; x < quantidadeDeUsuario; x++) {
+        for (int x = 0; x < quantidadeDeUsuario; x++) {
             System.out.println("Insirir Nome: ");
-            nome[x] = bind.next();
+            String nome = bind.next();
             System.out.println("Inserir Horas:");
-            horas[x] = bind.nextInt();
+            int horas = bind.nextInt();
             System.out.println("Valor por Hora:");
-            valorPorHora[x] = bind.nextDouble();
+            double valorPorHora = bind.nextDouble();
             System.out.println("O funcionário é tercerizado? true/false: ");
-            tercerizadoF[x] = bind.nextBoolean();
-        }
-        for (int x = 0; x <= quantidadeDeUsuario; x++) {
-            System.out.println("Nome: " + nome[x]);
-            if(tercerizadoF[x] == true){
-                tercerizado.pagamento2();
-            } else if (tercerizadoF[x] == false){
-                funcionario.pagamento();
+
+            boolean tercerizadoF = bind.nextBoolean();
+            bind.nextLine();
+
+            if (tercerizadoF) {
+
+                double bonusAdicional = 2.1;
+                tercerizado[x] = new Tercerizado(nome, horas, valorPorHora, bonusAdicional);
+                System.out.println("Nome: " + tercerizado[x].nome);
+                System.out.println("Pagamento: R$" + tercerizado[x].pagamento2());
+            } else {
+
+                funcionario[x] = new Funcionario(nome, horas, valorPorHora);
+                System.out.println("Nome: " + funcionario[x].nome);
+                System.out.println("Pagamento: R$" + funcionario[x].pagamento());
+
+                }
             }
         }
     }
-}
+
+

@@ -1,13 +1,17 @@
-public class Tercerizado {
+package src;
+   public class Tercerizado extends Funcionario{
+    public double bonusAdicional;
+    public Tercerizado(String nome, int horas, double valorPorHora, double bonusAdicional){
 
-    Funcionario funcionario = new Funcionario();
-    Main main = new Main();
-    public double valorPagamentoTerc[] = new double [Main.quantidadeDeUsuario];
+        super(nome, horas, valorPorHora);
+        this.bonusAdicional = bonusAdicional;
 
-    void pagamento2() {
-        for (int x = 0; x < Main.quantidadeDeUsuario; x++) {
-            valorPagamentoTerc[x] = (Main.horas[x] * Main.valorPorHora[x]) * 2.1;
-            System.out.println("Pagamento: " + valorPagamentoTerc[x]);
-        }
     }
+    public double pagamento2() {
+
+        double resultado = (horas * valorPorHora) * bonusAdicional;
+
+        return  resultado;
+    }
+
 }

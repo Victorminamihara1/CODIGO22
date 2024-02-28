@@ -1,11 +1,18 @@
-import java.util.Scanner;
-
+package src;
 public class Funcionario {
-   Main main = new Main();
-   public static void pagamento() {
-        for (int x = 0; x < Main.quantidadeDeUsuario; x++) {
-            Main.valorPagamento[x] = Main.horas[x] * Main.valorPorHora[x];
-            System.out.println("Pagamento: " + Main.valorPagamento[x]);
-        }
+    String nome;
+    int horas;
+    Double valorPorHora;
+    double valorPagamento;
+    public Funcionario(String nome, int horas, double valorPorHora){
+        this.nome = nome;
+        this.horas = horas;
+        this.valorPorHora = valorPorHora;
+    }
+   public double pagamento() {
+
+       valorPagamento = horas* valorPorHora;
+
+        return valorPagamento;
     }
 }
